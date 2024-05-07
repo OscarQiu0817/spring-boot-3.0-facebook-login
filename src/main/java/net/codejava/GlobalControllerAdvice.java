@@ -36,14 +36,6 @@ public class GlobalControllerAdvice {
             model.addAttribute("loginProvider", Provider.LOCAL.getName());
         }else{
 
-            // 轉成 CustomOAuth2User 取得 email
-            CustomOAuth2User oauthUser = (CustomOAuth2User) authentication.getPrincipal();
-
-            User user = userService.getUserByUsername(oauthUser.getEmail());
-            Provider provider = user.getProvider();
-
-            model.addAttribute("loginProvider", provider.getName());
-
             // 轉成 OAuth2AuthenticationToken 取得 accessToken
             OAuth2AuthenticationToken oauthToken =
                     (OAuth2AuthenticationToken) authentication;
@@ -52,6 +44,18 @@ public class GlobalControllerAdvice {
                             oauthToken.getAuthorizedClientRegistrationId(),
                             oauthToken.getName());
             String accessToken = client.getAccessToken().getTokenValue();
+
+            System.out.println("accessToken = " + accessToken);
+
+            // 轉成 CustomOAuth2User 取得 email
+            CustomOAuth2User oauthUser = (CustomOAuth2User) authentication.getPrincipal();
+
+            User user = userService.getUserByUsername(oauthUser.getEmail() == null ? oauthUser.getName() : oauthUser.getEmail());
+            Provider provider = user.getProvider();
+
+            model.addAttribute("loginProvider", provider.getName());
+
+
 
             StringBuilder profilePictureUrl = new StringBuilder("");
             switch (provider){
@@ -66,6 +70,7 @@ public class GlobalControllerAdvice {
                     profilePictureUrl.append(oauthUser.getPicture());
                     break;
                 case GITHUB:
+                    profilePictureUrl.append(oauthUser.getAvatarUrl());
                     break;
                 default:
                     break;

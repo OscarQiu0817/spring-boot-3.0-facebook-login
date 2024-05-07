@@ -12,7 +12,8 @@ public class UserService {
     public void processOAuthPostLogin(CustomOAuth2User oauthUser) {
     	System.out.println("username: " + oauthUser.getEmail());
     	System.out.println("provider: " + oauthUser.getProvider());
-        User existUser = repo.getUserByUsernameAndProvider(oauthUser.getEmail(),
+        User existUser = repo.getUserByUsernameAndProvider(
+                oauthUser.getEmail() == null ? oauthUser.getName() : oauthUser.getEmail(),
                 Provider.valueOf(oauthUser.getProvider().toUpperCase()));
 
         if (existUser == null) {
@@ -20,7 +21,7 @@ public class UserService {
             System.out.println("user not exist... create new one");
 
             User newUser = new User();
-            newUser.setUsername(oauthUser.getEmail());
+            newUser.setUsername(oauthUser.getEmail() == null ? oauthUser.getName() : oauthUser.getEmail());
             newUser.setProvider(Provider.valueOf(oauthUser.getProvider().toUpperCase()));
             newUser.setEnabled(true);          
              

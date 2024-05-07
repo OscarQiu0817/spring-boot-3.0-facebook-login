@@ -45,8 +45,14 @@ public class CustomOAuth2User implements OAuth2User {
 		return oauth2User.<String>getAttribute("id");
 	}
 
+	// for google
 	public String getPicture() {
 		return oauth2User.<String>getAttribute("picture");
+	}
+
+	// for github
+	public String getAvatarUrl(){
+		return oauth2User.getAttribute("avatar_url");
 	}
 
 	public void setProvider(String provider){

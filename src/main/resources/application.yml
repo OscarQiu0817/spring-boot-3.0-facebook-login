@@ -31,3 +31,9 @@ spring:
            scope:
              - email
              - profile
+         github:
+           clientId: your-client-id
+           clientSecret: your-client-secret
+#           scope:
+#             - email
+#             - profile
