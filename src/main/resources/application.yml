@@ -31,6 +31,7 @@ spring:
            scope:
              - email
              - profile
+         # github 的 email 是控制在帳號設定要不要顯示, 所以要特別去抓, 不是透過 oauth 方式取得.
          github:
            clientId: your-client-id
            clientSecret: your-client-secret
