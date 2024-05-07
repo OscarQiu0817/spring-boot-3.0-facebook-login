@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head th:fragment="html_head(pageTitle)">
-	<meta charset="ISO-8859-1">
+	<meta charset="UTF-8">
 	<title>[[${pageTitle}]]</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -14,6 +14,10 @@
 		<form th:action="@{/logout}" method="post">
 			Welcome <b><span sec:authentication="name">Username</span></b>
 			&nbsp;
+			<img height="100" th:src="${userPicture}">
+			<BR>
+			You are current login in <th:block th:text="${loginProvider}">Login Provider</th:block>
+			<BR>
 			<input type="submit" value="Logout" />
 		</form>
 	</div>
