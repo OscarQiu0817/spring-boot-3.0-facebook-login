@@ -1,3 +1,24 @@
+參考資料 : 
+
+1. https://www.youtube.com/watch?v=doxeYqnibbQ
+2. https://spring.io/blog/2018/03/06/using-spring-security-5-to-integrate-with-oauth-2-secured-services-such-as-facebook-and-github
+3. https://idontwannarock.github.io/spring-security-reference/docs/5_7_oaut_2_0_logi/
+
+FB:
+1. https://stackoverflow.com/questions/10650730/facebook-graph-api-get-larger-pictures-in-one-request
+
+Google:
+1. https://ww.wfublog.com/2023/02/google-people-api-2023.html
+2. https://stackoverflow.com/questions/68105980/defaultoidcuser-cannot-be-cast-to-class-customoauth2user
+3. https://medium.com/@rashmimishra0223/oauth2-with-openid-google-in-spring-boot-application-9f1f1242712d
+4. https://waynestalk.com/spring-security-oauth2-google-signin-explained/
+
+Github:
+1. https://medium.com/swlh/spring-boot-oauth2-login-with-github-88b178e0c004
+
+
+--- 以下為原始 read me.
+
 # spring-boot-3.0-facebook-login
 
 ## Purpose
