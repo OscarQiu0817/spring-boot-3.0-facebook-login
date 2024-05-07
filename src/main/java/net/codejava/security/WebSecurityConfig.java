@@ -80,7 +80,7 @@ public class WebSecurityConfig {
 														Authentication authentication) throws IOException, ServletException {
 						CustomOAuth2User oauthUser = (CustomOAuth2User) authentication.getPrincipal();
 
-						userService.processOAuthPostLogin(oauthUser.getEmail());
+						userService.processOAuthPostLogin(oauthUser);
 
 						response.sendRedirect("/list");
 					}

@@ -23,4 +23,11 @@ spring:
           clientSecret: 56ca49979da9d04a0e445588042653ab
           scope:
            - email
-           - public_profile      
+           - public_profile
+         # 沒有指定 scope 的話, 預設拿到的是 DefaultOidcUser , 無法被轉型為 CustomOAuth2User
+         google:
+           clientId: your-client-id
+           clientSecret: your-client-secret
+           scope:
+             - email
+             - profile

@@ -1,5 +1,6 @@
 package net.codejava.user;
 
+import net.codejava.security.oauth.CustomOAuth2User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,14 +9,19 @@ public class UserService {
     @Autowired
     private UserRepository repo;
      
-    public void processOAuthPostLogin(String username) {
-    	System.out.println("username: " + username);
-        User existUser = repo.getUserByUsername(username);
-         
+    public void processOAuthPostLogin(CustomOAuth2User oauthUser) {
+    	System.out.println("username: " + oauthUser.getEmail());
+    	System.out.println("provider: " + oauthUser.getProvider());
+        User existUser = repo.getUserByUsernameAndProvider(oauthUser.getEmail(),
+                Provider.valueOf(oauthUser.getProvider().toUpperCase()));
+
         if (existUser == null) {
+
+            System.out.println("user not exist... create new one");
+
             User newUser = new User();
-            newUser.setUsername(username);
-            newUser.setProvider(Provider.FACEBOOK);
+            newUser.setUsername(oauthUser.getEmail());
+            newUser.setProvider(Provider.valueOf(oauthUser.getProvider().toUpperCase()));
             newUser.setEnabled(true);          
              
             repo.save(newUser);        

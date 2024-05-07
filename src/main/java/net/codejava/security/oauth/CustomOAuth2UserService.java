@@ -11,9 +11,15 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService  {
 
 	@Override
 	public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
+		// 應用程式 ( APP ) 的 ID
+//		System.out.println(userRequest.getClientRegistration().getClientId());;
+		// 該應用程式隸屬 ( ex : facebook / google ... )
+//		System.out.println(userRequest.getClientRegistration().getRegistrationId());
 		OAuth2User user =  super.loadUser(userRequest);
 		System.out.println("loadUser....");
-		return new CustomOAuth2User(user);
+		CustomOAuth2User coUser = new CustomOAuth2User(user);
+		coUser.setProvider(userRequest.getClientRegistration().getRegistrationId());
+		return coUser;
 	}
 
 }

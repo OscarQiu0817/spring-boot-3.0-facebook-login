@@ -9,6 +9,8 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 public class CustomOAuth2User implements OAuth2User {
 
 	private OAuth2User oauth2User;
+
+	private String provider;
 	
 	public CustomOAuth2User(OAuth2User oauth2User) {
 		this.oauth2User = oauth2User;
@@ -26,7 +28,12 @@ public class CustomOAuth2User implements OAuth2User {
 
 	@Override
 	public String getName() {
-		System.out.println(oauth2User.<String>getAttribute("email"));
+
+		// check information in user attribute
+//		for(Map.Entry ent : oauth2User.getAttributes().entrySet()){
+//			System.out.println(ent.getKey()+"="+ent.getValue());
+//		}
+
 		return oauth2User.getAttribute("name");
 	}
 
@@ -36,6 +43,18 @@ public class CustomOAuth2User implements OAuth2User {
 
 	public String getId() {
 		return oauth2User.<String>getAttribute("id");
+	}
+
+	public String getPicture() {
+		return oauth2User.<String>getAttribute("picture");
+	}
+
+	public void setProvider(String provider){
+		this.provider = provider;
+	}
+
+	public String getProvider(){
+		return this.provider;
 	}
 
 }

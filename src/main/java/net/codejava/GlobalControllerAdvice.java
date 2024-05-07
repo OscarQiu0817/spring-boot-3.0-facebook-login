@@ -27,14 +27,13 @@ public class GlobalControllerAdvice {
     @ModelAttribute("globalData")
     public void getGlobalData(Model model) {
 
-
         Authentication authentication =
                 SecurityContextHolder
                         .getContext()
                         .getAuthentication();
 
         if( authentication.getPrincipal() instanceof MyUserDetails ){
-            model.addAttribute("loginProvider", Provider.LOCAL.name());
+            model.addAttribute("loginProvider", Provider.LOCAL.getName());
         }else{
 
             // 轉成 CustomOAuth2User 取得 email
@@ -43,7 +42,7 @@ public class GlobalControllerAdvice {
             User user = userService.getUserByUsername(oauthUser.getEmail());
             Provider provider = user.getProvider();
 
-            model.addAttribute("loginProvider", provider.name());
+            model.addAttribute("loginProvider", provider.getName());
 
             // 轉成 OAuth2AuthenticationToken 取得 accessToken
             OAuth2AuthenticationToken oauthToken =
@@ -64,6 +63,7 @@ public class GlobalControllerAdvice {
                     profilePictureUrl.append("&access_token=").append(accessToken);
                     break;
                 case GOOGLE:
+                    profilePictureUrl.append(oauthUser.getPicture());
                     break;
                 case GITHUB:
                     break;
@@ -71,7 +71,7 @@ public class GlobalControllerAdvice {
                     break;
             }
 
-            System.out.println(profilePictureUrl);
+            System.out.println("profilePictureUrl : " + profilePictureUrl);
             model.addAttribute("userPicture", profilePictureUrl.toString());
         }
     }
