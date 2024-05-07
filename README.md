@@ -1,4 +1,4 @@
-參考資料 : 
+參考資料 : 包含 1. 如何於各平台建置 APP 取得 client-id & client-secret  2. 如何取得 access token 3. 如何取得大頭照
 
 1. https://www.youtube.com/watch?v=doxeYqnibbQ
 2. https://spring.io/blog/2018/03/06/using-spring-security-5-to-integrate-with-oauth-2-secured-services-such-as-facebook-and-github
